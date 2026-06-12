@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,57 +8,73 @@
 <title>Uma Pergunta Especial ❤️</title>
 
 <style>
-body{
+
+*{
     margin:0;
-    font-family:Arial,sans-serif;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
     background:linear-gradient(135deg,#ffdde1,#ee9ca7);
     min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    text-align:center;
+    padding:20px;
 }
 
 .container{
     background:white;
+    max-width:800px;
+    width:100%;
     padding:30px;
-    border-radius:20px;
-    width:90%;
-    max-width:700px;
-    box-shadow:0 0 20px rgba(0,0,0,.2);
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
 }
 
 h1{
     color:#d63384;
+    margin-bottom:20px;
+}
+
+p{
+    font-size:18px;
+    color:#444;
+    margin:20px 0;
 }
 
 .galeria{
     display:flex;
-    justify-content:center;
-    gap:10px;
     flex-wrap:wrap;
-    margin:20px 0;
+    justify-content:center;
+    gap:15px;
+    margin-bottom:25px;
 }
 
 .galeria img{
-    width:150px;
-    height:150px;
+    width:180px;
+    height:180px;
     object-fit:cover;
-    border-radius:15px;
+    border-radius:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
 }
 
 .botoes{
     position:relative;
-    height:120px;
+    height:150px;
 }
 
 button{
+    padding:15px 35px;
+    font-size:20px;
     border:none;
-    padding:15px 30px;
-    border-radius:10px;
+    border-radius:15px;
     cursor:pointer;
-    font-size:18px;
     font-weight:bold;
+    transition:.3s;
 }
 
 #sim{
@@ -65,37 +82,45 @@ button{
     color:white;
 }
 
+#sim:hover{
+    transform:scale(1.05);
+}
+
 #nao{
     background:#dc3545;
     color:white;
     position:absolute;
+    left:55%;
+    top:0;
 }
 
 #telaFinal{
     display:none;
 }
 
-#telaFinal img{
-    max-width:220px;
+#qrcode{
+    max-width:250px;
     margin-top:20px;
 }
 
 .coracao{
     position:fixed;
-    font-size:25px;
+    font-size:30px;
+    pointer-events:none;
     animation:subir 4s linear forwards;
 }
 
 @keyframes subir{
     from{
-        transform:translateY(0);
         opacity:1;
+        transform:translateY(0);
     }
     to{
-        transform:translateY(-500px);
         opacity:0;
+        transform:translateY(-700px);
     }
 }
+
 </style>
 </head>
 
@@ -103,17 +128,17 @@ button{
 
 <div class="container" id="telaPergunta">
 
-    <h1>💖 Quer namorar comigo? 💖</h1>
+    <h1>❤️ Vamos passar a vida toda juntos? ❤️</h1>
 
     <div class="galeria">
-        <img src="foto1.jpg">
-        <img src="foto2.jpg">
-        <img src="foto3.jpg">
+        <img src="foto1.jpg" alt="">
+        <img src="foto2.jpg" alt="">
+        <img src="foto3.jpg" alt="">
     </div>
 
     <p>
-        Desde que você entrou na minha vida,
-        tudo ficou mais bonito. ❤️
+        Você trouxe alegria, paz e amor para os meus dias.
+        E eu só consigo imaginar um futuro ao seu lado. ❤️
     </p>
 
     <div class="botoes">
@@ -125,66 +150,69 @@ button{
 
 <div class="container" id="telaFinal">
 
-    <h1>🎉 Você disse SIM! 🎉</h1>
-
-    <h2>
-        Agora não tem mais volta 😍
-    </h2>
+    <h1>💍 Eu sabia que você diria SIM! 💍</h1>
 
     <p>
-        Prometo fazer você sorrir todos os dias,
-        compartilhar sonhos, aventuras e muitos
-        momentos especiais ao seu lado. ❤️
+        Que este seja apenas o começo de uma linda história.
+        Quero dividir meus sonhos, minhas conquistas,
+        minhas risadas e toda a minha vida com você. ❤️
     </p>
 
-    <img src="qrcode.png" alt="QR Code">
+    <h2>
+        Eu te amo! ❤️
+    </h2>
+
+    <img id="qrcode" src="qrcode.png" alt="QR Code">
 
     <p>
-        Escaneie o QR Code para uma surpresa especial!
+        Escaneie para descobrir sua surpresa especial.
     </p>
 
 </div>
 
 <script>
 
-const botaoNao = document.getElementById('nao');
+const botaoNao = document.getElementById("nao");
 
-function moverBotao(){
+let tamanho = 1;
 
-    const largura = window.innerWidth - 150;
-    const altura = window.innerHeight - 150;
+function fugir(){
 
-    botaoNao.style.left =
-        Math.random() * largura + "px";
+    const largura = window.innerWidth - 180;
+    const altura = window.innerHeight - 180;
 
-    botaoNao.style.top =
-        Math.random() * altura + "px";
+    botaoNao.style.left = Math.random() * largura + "px";
+    botaoNao.style.top = Math.random() * altura + "px";
+
+    tamanho *= 0.9;
+    botaoNao.style.transform = `scale(${tamanho})`;
 }
 
-botaoNao.addEventListener('mouseover', moverBotao);
-botaoNao.addEventListener('click', moverBotao);
+botaoNao.addEventListener("mouseover", fugir);
+botaoNao.addEventListener("click", fugir);
 
-document.getElementById('sim').onclick = () => {
+document.getElementById("sim").addEventListener("click", () => {
 
-    document.getElementById('telaPergunta').style.display='none';
-    document.getElementById('telaFinal').style.display='block';
+    document.getElementById("telaPergunta").style.display = "none";
+    document.getElementById("telaFinal").style.display = "block";
 
-    for(let i=0;i<60;i++){
+    for(let i=0;i<100;i++){
 
-        const c = document.createElement('div');
-        c.innerHTML='❤️';
-        c.className='coracao';
+        const coracao = document.createElement("div");
 
-        c.style.left=Math.random()*100+'vw';
-        c.style.top='100vh';
+        coracao.classList.add("coracao");
+        coracao.innerHTML = "❤️";
 
-        document.body.appendChild(c);
+        coracao.style.left = Math.random()*100 + "vw";
+        coracao.style.top = "100vh";
+
+        document.body.appendChild(coracao);
 
         setTimeout(()=>{
-            c.remove();
+            coracao.remove();
         },4000);
     }
-}
+});
 
 </script>
 
