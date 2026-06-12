@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Uma Pergunta Especial ❤️</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#ffdde1,#ee9ca7);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.container{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    width:90%;
+    max-width:700px;
+    box-shadow:0 0 20px rgba(0,0,0,.2);
+}
+
+h1{
+    color:#d63384;
+}
+
+.galeria{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin:20px 0;
+}
+
+.galeria img{
+    width:150px;
+    height:150px;
+    object-fit:cover;
+    border-radius:15px;
+}
+
+.botoes{
+    position:relative;
+    height:120px;
+}
+
+button{
+    border:none;
+    padding:15px 30px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:18px;
+    font-weight:bold;
+}
+
+#sim{
+    background:#28a745;
+    color:white;
+}
+
+#nao{
+    background:#dc3545;
+    color:white;
+    position:absolute;
+}
+
+#telaFinal{
+    display:none;
+}
+
+#telaFinal img{
+    max-width:220px;
+    margin-top:20px;
+}
+
+.coracao{
+    position:fixed;
+    font-size:25px;
+    animation:subir 4s linear forwards;
+}
+
+@keyframes subir{
+    from{
+        transform:translateY(0);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-500px);
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="telaPergunta">
+
+    <h1>💖 Quer namorar comigo? 💖</h1>
+
+    <div class="galeria">
+        <img src="foto1.jpg">
+        <img src="foto2.jpg">
+        <img src="foto3.jpg">
+    </div>
+
+    <p>
+        Desde que você entrou na minha vida,
+        tudo ficou mais bonito. ❤️
+    </p>
+
+    <div class="botoes">
+        <button id="sim">SIM ❤️</button>
+        <button id="nao">NÃO 😢</button>
+    </div>
+
+</div>
+
+<div class="container" id="telaFinal">
+
+    <h1>🎉 Você disse SIM! 🎉</h1>
+
+    <h2>
+        Agora não tem mais volta 😍
+    </h2>
+
+    <p>
+        Prometo fazer você sorrir todos os dias,
+        compartilhar sonhos, aventuras e muitos
+        momentos especiais ao seu lado. ❤️
+    </p>
+
+    <img src="qrcode.png" alt="QR Code">
+
+    <p>
+        Escaneie o QR Code para uma surpresa especial!
+    </p>
+
+</div>
+
+<script>
+
+const botaoNao = document.getElementById('nao');
+
+function moverBotao(){
+
+    const largura = window.innerWidth - 150;
+    const altura = window.innerHeight - 150;
+
+    botaoNao.style.left =
+        Math.random() * largura + "px";
+
+    botaoNao.style.top =
+        Math.random() * altura + "px";
+}
+
+botaoNao.addEventListener('mouseover', moverBotao);
+botaoNao.addEventListener('click', moverBotao);
+
+document.getElementById('sim').onclick = () => {
+
+    document.getElementById('telaPergunta').style.display='none';
+    document.getElementById('telaFinal').style.display='block';
+
+    for(let i=0;i<60;i++){
+
+        const c = document.createElement('div');
+        c.innerHTML='❤️';
+        c.className='coracao';
+
+        c.style.left=Math.random()*100+'vw';
+        c.style.top='100vh';
+
+        document.body.appendChild(c);
+
+        setTimeout(()=>{
+            c.remove();
+        },4000);
+    }
+}
+
+</script>
+
+</body>
+</html>
